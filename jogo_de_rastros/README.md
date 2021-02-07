@@ -1,6 +1,6 @@
 # Desenvolvido por
 
-http://github.com/pedrarauj09
+http://github.com/pedroarauj09
 
 http://github.com/soseiquenadasei00
 
