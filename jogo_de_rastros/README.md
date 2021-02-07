@@ -8,7 +8,7 @@ http://github.com/VitorLelis
 
 # Descrição
 
-Este é o jogo de Rastros. Para descobrir as regras do jogo, abra o pdf com o manual do jogo. O programa permite que dois jogadores, partilhando o mesmo teclado, o possam jogar. Os comandos são introduzidos através de um interpretador de comandos.
+Este é o jogo de Rastros. Para descobrir as regras do jogo, abra o pdf "manualDoJogo". O programa permite que dois jogadores, partilhando o mesmo teclado, o possam jogar. Os comandos são introduzidos através de um interpretador de comandos.
 
 # Interpretador de comandos
 
