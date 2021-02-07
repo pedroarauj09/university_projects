@@ -1,8 +1,10 @@
 # Desenvolvido por
 
-(github.com/pedrarauj09)
-(github.com/soseiquenadasei00)
-(github.com/VitorLelis)
+[embed]http://github.com/pedrarauj09[/embed]
+
+[embed]http://github.com/soseiquenadasei00[/embed]
+
+[embed]http://github.com/VitorLelis[/embed]
 
 # Descrição
 
