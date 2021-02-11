@@ -46,8 +46,6 @@ O formato do ficheiro é o seguinte:
 
 - [x] O estado do tabuleiro
 
-- [x] Uma linha em branco
-
 - [x] A lista de movimentos
 
 <br/>
