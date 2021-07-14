@@ -34,7 +34,7 @@ Nessa estrutura pode encontrar ainda as seguintes pastas: <br/>
 
 # <p id='about'> 🔎 Sobre o projeto </p>
 
-Consiste em uma aplicação que processa ficheiros de áudio tranformando-os , através de filtros , em outro ficheiro mp3, utilizando recursos como pipes.
+Consiste em uma aplicação que usa-se conteúdos aprendidos na cadeira de sistemas operativos. Possui como objetivo processar ficheiros de áudio tranformando-os , através de filtros , em outro ficheiro mp3, utilizando recursos como pipes.
 
 <br/>
     
