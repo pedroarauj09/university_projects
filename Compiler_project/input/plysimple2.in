@@ -1,0 +1,32 @@
+%% LEX
+
+literals = §[]()§
+tokens = ['texto'] 
+ignore = ' \t\n'
+
+r'\"[^"]+\"' return("texto", t.value)
+error(f"Illegal character '{t.value[0]}', [{t.lexer.lineno}]",t.lexer.skip(1))
+
+%% YACC
+
+dir_pasta -> Dir : '(' texto Conteudo ')' => { t[0] = [f"mkdir {t[2]}", f"cd {t[2]}"] + t[3] + ["cd .."] }
+dir_ficheiro -> Dir : Ficheiro => { t[0] = [t[1]] }
+conteudo -> Conteudo : Conteudo Dir => { t[0] = t[1] + t[2] }
+conteudo_empty -> Conteudo :  => { t[0] = [] }
+ficheiro -> Ficheiro : '[' texto texto ']' => { t[0] = f"cp {t[3]} {t[2]}" }
+error('Erro sintático: ', t)
+
+@
+
+# Build the parser
+parser = yacc.yacc()
+# Definir o estado
+parser.registos = {}
+
+# Read line from input and parse it
+import sys
+xdoc = sys.stdin.read()
+result = parser.parse(xdoc)
+print(result)
+
+@

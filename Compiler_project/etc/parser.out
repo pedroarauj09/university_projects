@@ -1,0 +1,854 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    BEGINEND
+    SPACE
+
+Grammar
+
+Rule 0     S' -> parser
+Rule 1     parser -> lex yacc
+Rule 2     lex -> % % LEX lexStats lexDefs
+Rule 3     lexStats -> lexStats lexStat
+Rule 4     lexStats -> lexStat
+Rule 5     lexStat -> LIT = § simbols §
+Rule 6     lexStat -> TOK = [ tokens ]
+Rule 7     lexStat -> IGNORE = TOIGNORE
+Rule 8     simbols -> simbols simbol
+Rule 9     simbols -> simbol
+Rule 10    simbol -> +
+Rule 11    simbol -> -
+Rule 12    simbol -> =
+Rule 13    simbol -> /
+Rule 14    simbol -> *
+Rule 15    simbol -> (
+Rule 16    simbol -> )
+Rule 17    simbol -> [
+Rule 18    simbol -> ]
+Rule 19    tokens -> token
+Rule 20    tokens -> tokens , token
+Rule 21    token -> ASPAS ID ASPAS
+Rule 22    lexDefs -> lexDefs lexDef
+Rule 23    lexDefs -> lexDef
+Rule 24    lexDef -> REGEX RET ( ASPAS2 ID ASPAS2 , valueRet )
+Rule 25    lexDef -> ERROR
+Rule 26    valueRet -> RETVALUE
+Rule 27    valueRet -> TYPE ( RETVALUE )
+Rule 28    yacc -> % % YAC precedence yaccGram yaccFim
+Rule 29    precedence -> PRECED
+Rule 30    precedence -> <empty>
+Rule 31    yaccGram -> yaccStat
+Rule 32    yaccGram -> yaccGram yaccStat
+Rule 33    yaccStat -> ID GRAMM FUNC
+Rule 34    yaccStat -> ERROR
+Rule 35    yaccFim -> ANY
+
+Terminals, with rules where they appear
+
+%                    : 2 2 28 28
+(                    : 15 24 27
+)                    : 16 24 27
+*                    : 14
++                    : 10
+,                    : 20 24
+-                    : 11
+/                    : 13
+=                    : 5 6 7 12
+ANY                  : 35
+ASPAS                : 21 21
+ASPAS2               : 24 24
+BEGINEND             : 
+ERROR                : 25 34
+FUNC                 : 33
+GRAMM                : 33
+ID                   : 21 24 33
+IGNORE               : 7
+LEX                  : 2
+LIT                  : 5
+PRECED               : 29
+REGEX                : 24
+RET                  : 24
+RETVALUE             : 26 27
+SPACE                : 
+TOIGNORE             : 7
+TOK                  : 6
+TYPE                 : 27
+YAC                  : 28
+[                    : 6 17
+]                    : 6 18
+error                : 
+§                    : 5 5
+
+Nonterminals, with rules where they appear
+
+lex                  : 1
+lexDef               : 22 23
+lexDefs              : 2 22
+lexStat              : 3 4
+lexStats             : 2 3
+parser               : 0
+precedence           : 28
+simbol               : 8 9
+simbols              : 5 8
+token                : 19 20
+tokens               : 6 20
+valueRet             : 24
+yacc                 : 1
+yaccFim              : 28
+yaccGram             : 28 32
+yaccStat             : 31 32
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . parser
+    (1) parser -> . lex yacc
+    (2) lex -> . % % LEX lexStats lexDefs
+
+    %               shift and go to state 3
+
+    parser                         shift and go to state 1
+    lex                            shift and go to state 2
+
+state 1
+
+    (0) S' -> parser .
+
+
+
+state 2
+
+    (1) parser -> lex . yacc
+    (28) yacc -> . % % YAC precedence yaccGram yaccFim
+
+    %               shift and go to state 5
+
+    yacc                           shift and go to state 4
+
+state 3
+
+    (2) lex -> % . % LEX lexStats lexDefs
+
+    %               shift and go to state 6
+
+
+state 4
+
+    (1) parser -> lex yacc .
+
+    $end            reduce using rule 1 (parser -> lex yacc .)
+
+
+state 5
+
+    (28) yacc -> % . % YAC precedence yaccGram yaccFim
+
+    %               shift and go to state 7
+
+
+state 6
+
+    (2) lex -> % % . LEX lexStats lexDefs
+
+    LEX             shift and go to state 8
+
+
+state 7
+
+    (28) yacc -> % % . YAC precedence yaccGram yaccFim
+
+    YAC             shift and go to state 9
+
+
+state 8
+
+    (2) lex -> % % LEX . lexStats lexDefs
+    (3) lexStats -> . lexStats lexStat
+    (4) lexStats -> . lexStat
+    (5) lexStat -> . LIT = § simbols §
+    (6) lexStat -> . TOK = [ tokens ]
+    (7) lexStat -> . IGNORE = TOIGNORE
+
+    LIT             shift and go to state 12
+    TOK             shift and go to state 13
+    IGNORE          shift and go to state 14
+
+    lexStats                       shift and go to state 10
+    lexStat                        shift and go to state 11
+
+state 9
+
+    (28) yacc -> % % YAC . precedence yaccGram yaccFim
+    (29) precedence -> . PRECED
+    (30) precedence -> .
+
+    PRECED          shift and go to state 16
+    ID              reduce using rule 30 (precedence -> .)
+    ERROR           reduce using rule 30 (precedence -> .)
+
+    precedence                     shift and go to state 15
+
+state 10
+
+    (2) lex -> % % LEX lexStats . lexDefs
+    (3) lexStats -> lexStats . lexStat
+    (22) lexDefs -> . lexDefs lexDef
+    (23) lexDefs -> . lexDef
+    (5) lexStat -> . LIT = § simbols §
+    (6) lexStat -> . TOK = [ tokens ]
+    (7) lexStat -> . IGNORE = TOIGNORE
+    (24) lexDef -> . REGEX RET ( ASPAS2 ID ASPAS2 , valueRet )
+    (25) lexDef -> . ERROR
+
+    LIT             shift and go to state 12
+    TOK             shift and go to state 13
+    IGNORE          shift and go to state 14
+    REGEX           shift and go to state 20
+    ERROR           shift and go to state 21
+
+    lexDefs                        shift and go to state 17
+    lexStat                        shift and go to state 18
+    lexDef                         shift and go to state 19
+
+state 11
+
+    (4) lexStats -> lexStat .
+
+    LIT             reduce using rule 4 (lexStats -> lexStat .)
+    TOK             reduce using rule 4 (lexStats -> lexStat .)
+    IGNORE          reduce using rule 4 (lexStats -> lexStat .)
+    REGEX           reduce using rule 4 (lexStats -> lexStat .)
+    ERROR           reduce using rule 4 (lexStats -> lexStat .)
+
+
+state 12
+
+    (5) lexStat -> LIT . = § simbols §
+
+    =               shift and go to state 22
+
+
+state 13
+
+    (6) lexStat -> TOK . = [ tokens ]
+
+    =               shift and go to state 23
+
+
+state 14
+
+    (7) lexStat -> IGNORE . = TOIGNORE
+
+    =               shift and go to state 24
+
+
+state 15
+
+    (28) yacc -> % % YAC precedence . yaccGram yaccFim
+    (31) yaccGram -> . yaccStat
+    (32) yaccGram -> . yaccGram yaccStat
+    (33) yaccStat -> . ID GRAMM FUNC
+    (34) yaccStat -> . ERROR
+
+    ID              shift and go to state 27
+    ERROR           shift and go to state 28
+
+    yaccGram                       shift and go to state 25
+    yaccStat                       shift and go to state 26
+
+state 16
+
+    (29) precedence -> PRECED .
+
+    ID              reduce using rule 29 (precedence -> PRECED .)
+    ERROR           reduce using rule 29 (precedence -> PRECED .)
+
+
+state 17
+
+    (2) lex -> % % LEX lexStats lexDefs .
+    (22) lexDefs -> lexDefs . lexDef
+    (24) lexDef -> . REGEX RET ( ASPAS2 ID ASPAS2 , valueRet )
+    (25) lexDef -> . ERROR
+
+    %               reduce using rule 2 (lex -> % % LEX lexStats lexDefs .)
+    REGEX           shift and go to state 20
+    ERROR           shift and go to state 21
+
+    lexDef                         shift and go to state 29
+
+state 18
+
+    (3) lexStats -> lexStats lexStat .
+
+    LIT             reduce using rule 3 (lexStats -> lexStats lexStat .)
+    TOK             reduce using rule 3 (lexStats -> lexStats lexStat .)
+    IGNORE          reduce using rule 3 (lexStats -> lexStats lexStat .)
+    REGEX           reduce using rule 3 (lexStats -> lexStats lexStat .)
+    ERROR           reduce using rule 3 (lexStats -> lexStats lexStat .)
+
+
+state 19
+
+    (23) lexDefs -> lexDef .
+
+    REGEX           reduce using rule 23 (lexDefs -> lexDef .)
+    ERROR           reduce using rule 23 (lexDefs -> lexDef .)
+    %               reduce using rule 23 (lexDefs -> lexDef .)
+
+
+state 20
+
+    (24) lexDef -> REGEX . RET ( ASPAS2 ID ASPAS2 , valueRet )
+
+    RET             shift and go to state 30
+
+
+state 21
+
+    (25) lexDef -> ERROR .
+
+    REGEX           reduce using rule 25 (lexDef -> ERROR .)
+    ERROR           reduce using rule 25 (lexDef -> ERROR .)
+    %               reduce using rule 25 (lexDef -> ERROR .)
+
+
+state 22
+
+    (5) lexStat -> LIT = . § simbols §
+
+    §               shift and go to state 31
+
+
+state 23
+
+    (6) lexStat -> TOK = . [ tokens ]
+
+    [               shift and go to state 32
+
+
+state 24
+
+    (7) lexStat -> IGNORE = . TOIGNORE
+
+    TOIGNORE        shift and go to state 33
+
+
+state 25
+
+    (28) yacc -> % % YAC precedence yaccGram . yaccFim
+    (32) yaccGram -> yaccGram . yaccStat
+    (35) yaccFim -> . ANY
+    (33) yaccStat -> . ID GRAMM FUNC
+    (34) yaccStat -> . ERROR
+
+    ANY             shift and go to state 36
+    ID              shift and go to state 27
+    ERROR           shift and go to state 28
+
+    yaccFim                        shift and go to state 34
+    yaccStat                       shift and go to state 35
+
+state 26
+
+    (31) yaccGram -> yaccStat .
+
+    ANY             reduce using rule 31 (yaccGram -> yaccStat .)
+    ID              reduce using rule 31 (yaccGram -> yaccStat .)
+    ERROR           reduce using rule 31 (yaccGram -> yaccStat .)
+
+
+state 27
+
+    (33) yaccStat -> ID . GRAMM FUNC
+
+    GRAMM           shift and go to state 37
+
+
+state 28
+
+    (34) yaccStat -> ERROR .
+
+    ANY             reduce using rule 34 (yaccStat -> ERROR .)
+    ID              reduce using rule 34 (yaccStat -> ERROR .)
+    ERROR           reduce using rule 34 (yaccStat -> ERROR .)
+
+
+state 29
+
+    (22) lexDefs -> lexDefs lexDef .
+
+    REGEX           reduce using rule 22 (lexDefs -> lexDefs lexDef .)
+    ERROR           reduce using rule 22 (lexDefs -> lexDefs lexDef .)
+    %               reduce using rule 22 (lexDefs -> lexDefs lexDef .)
+
+
+state 30
+
+    (24) lexDef -> REGEX RET . ( ASPAS2 ID ASPAS2 , valueRet )
+
+    (               shift and go to state 38
+
+
+state 31
+
+    (5) lexStat -> LIT = § . simbols §
+    (8) simbols -> . simbols simbol
+    (9) simbols -> . simbol
+    (10) simbol -> . +
+    (11) simbol -> . -
+    (12) simbol -> . =
+    (13) simbol -> . /
+    (14) simbol -> . *
+    (15) simbol -> . (
+    (16) simbol -> . )
+    (17) simbol -> . [
+    (18) simbol -> . ]
+
+    +               shift and go to state 42
+    -               shift and go to state 43
+    =               shift and go to state 39
+    /               shift and go to state 44
+    *               shift and go to state 45
+    (               shift and go to state 46
+    )               shift and go to state 47
+    [               shift and go to state 48
+    ]               shift and go to state 49
+
+    simbols                        shift and go to state 40
+    simbol                         shift and go to state 41
+
+state 32
+
+    (6) lexStat -> TOK = [ . tokens ]
+    (19) tokens -> . token
+    (20) tokens -> . tokens , token
+    (21) token -> . ASPAS ID ASPAS
+
+    ASPAS           shift and go to state 52
+
+    tokens                         shift and go to state 50
+    token                          shift and go to state 51
+
+state 33
+
+    (7) lexStat -> IGNORE = TOIGNORE .
+
+    LIT             reduce using rule 7 (lexStat -> IGNORE = TOIGNORE .)
+    TOK             reduce using rule 7 (lexStat -> IGNORE = TOIGNORE .)
+    IGNORE          reduce using rule 7 (lexStat -> IGNORE = TOIGNORE .)
+    REGEX           reduce using rule 7 (lexStat -> IGNORE = TOIGNORE .)
+    ERROR           reduce using rule 7 (lexStat -> IGNORE = TOIGNORE .)
+
+
+state 34
+
+    (28) yacc -> % % YAC precedence yaccGram yaccFim .
+
+    $end            reduce using rule 28 (yacc -> % % YAC precedence yaccGram yaccFim .)
+
+
+state 35
+
+    (32) yaccGram -> yaccGram yaccStat .
+
+    ANY             reduce using rule 32 (yaccGram -> yaccGram yaccStat .)
+    ID              reduce using rule 32 (yaccGram -> yaccGram yaccStat .)
+    ERROR           reduce using rule 32 (yaccGram -> yaccGram yaccStat .)
+
+
+state 36
+
+    (35) yaccFim -> ANY .
+
+    $end            reduce using rule 35 (yaccFim -> ANY .)
+
+
+state 37
+
+    (33) yaccStat -> ID GRAMM . FUNC
+
+    FUNC            shift and go to state 53
+
+
+state 38
+
+    (24) lexDef -> REGEX RET ( . ASPAS2 ID ASPAS2 , valueRet )
+
+    ASPAS2          shift and go to state 54
+
+
+state 39
+
+    (12) simbol -> = .
+
+    §               reduce using rule 12 (simbol -> = .)
+    +               reduce using rule 12 (simbol -> = .)
+    -               reduce using rule 12 (simbol -> = .)
+    =               reduce using rule 12 (simbol -> = .)
+    /               reduce using rule 12 (simbol -> = .)
+    *               reduce using rule 12 (simbol -> = .)
+    (               reduce using rule 12 (simbol -> = .)
+    )               reduce using rule 12 (simbol -> = .)
+    [               reduce using rule 12 (simbol -> = .)
+    ]               reduce using rule 12 (simbol -> = .)
+
+
+state 40
+
+    (5) lexStat -> LIT = § simbols . §
+    (8) simbols -> simbols . simbol
+    (10) simbol -> . +
+    (11) simbol -> . -
+    (12) simbol -> . =
+    (13) simbol -> . /
+    (14) simbol -> . *
+    (15) simbol -> . (
+    (16) simbol -> . )
+    (17) simbol -> . [
+    (18) simbol -> . ]
+
+    §               shift and go to state 55
+    +               shift and go to state 42
+    -               shift and go to state 43
+    =               shift and go to state 39
+    /               shift and go to state 44
+    *               shift and go to state 45
+    (               shift and go to state 46
+    )               shift and go to state 47
+    [               shift and go to state 48
+    ]               shift and go to state 49
+
+    simbol                         shift and go to state 56
+
+state 41
+
+    (9) simbols -> simbol .
+
+    §               reduce using rule 9 (simbols -> simbol .)
+    +               reduce using rule 9 (simbols -> simbol .)
+    -               reduce using rule 9 (simbols -> simbol .)
+    =               reduce using rule 9 (simbols -> simbol .)
+    /               reduce using rule 9 (simbols -> simbol .)
+    *               reduce using rule 9 (simbols -> simbol .)
+    (               reduce using rule 9 (simbols -> simbol .)
+    )               reduce using rule 9 (simbols -> simbol .)
+    [               reduce using rule 9 (simbols -> simbol .)
+    ]               reduce using rule 9 (simbols -> simbol .)
+
+
+state 42
+
+    (10) simbol -> + .
+
+    §               reduce using rule 10 (simbol -> + .)
+    +               reduce using rule 10 (simbol -> + .)
+    -               reduce using rule 10 (simbol -> + .)
+    =               reduce using rule 10 (simbol -> + .)
+    /               reduce using rule 10 (simbol -> + .)
+    *               reduce using rule 10 (simbol -> + .)
+    (               reduce using rule 10 (simbol -> + .)
+    )               reduce using rule 10 (simbol -> + .)
+    [               reduce using rule 10 (simbol -> + .)
+    ]               reduce using rule 10 (simbol -> + .)
+
+
+state 43
+
+    (11) simbol -> - .
+
+    §               reduce using rule 11 (simbol -> - .)
+    +               reduce using rule 11 (simbol -> - .)
+    -               reduce using rule 11 (simbol -> - .)
+    =               reduce using rule 11 (simbol -> - .)
+    /               reduce using rule 11 (simbol -> - .)
+    *               reduce using rule 11 (simbol -> - .)
+    (               reduce using rule 11 (simbol -> - .)
+    )               reduce using rule 11 (simbol -> - .)
+    [               reduce using rule 11 (simbol -> - .)
+    ]               reduce using rule 11 (simbol -> - .)
+
+
+state 44
+
+    (13) simbol -> / .
+
+    §               reduce using rule 13 (simbol -> / .)
+    +               reduce using rule 13 (simbol -> / .)
+    -               reduce using rule 13 (simbol -> / .)
+    =               reduce using rule 13 (simbol -> / .)
+    /               reduce using rule 13 (simbol -> / .)
+    *               reduce using rule 13 (simbol -> / .)
+    (               reduce using rule 13 (simbol -> / .)
+    )               reduce using rule 13 (simbol -> / .)
+    [               reduce using rule 13 (simbol -> / .)
+    ]               reduce using rule 13 (simbol -> / .)
+
+
+state 45
+
+    (14) simbol -> * .
+
+    §               reduce using rule 14 (simbol -> * .)
+    +               reduce using rule 14 (simbol -> * .)
+    -               reduce using rule 14 (simbol -> * .)
+    =               reduce using rule 14 (simbol -> * .)
+    /               reduce using rule 14 (simbol -> * .)
+    *               reduce using rule 14 (simbol -> * .)
+    (               reduce using rule 14 (simbol -> * .)
+    )               reduce using rule 14 (simbol -> * .)
+    [               reduce using rule 14 (simbol -> * .)
+    ]               reduce using rule 14 (simbol -> * .)
+
+
+state 46
+
+    (15) simbol -> ( .
+
+    §               reduce using rule 15 (simbol -> ( .)
+    +               reduce using rule 15 (simbol -> ( .)
+    -               reduce using rule 15 (simbol -> ( .)
+    =               reduce using rule 15 (simbol -> ( .)
+    /               reduce using rule 15 (simbol -> ( .)
+    *               reduce using rule 15 (simbol -> ( .)
+    (               reduce using rule 15 (simbol -> ( .)
+    )               reduce using rule 15 (simbol -> ( .)
+    [               reduce using rule 15 (simbol -> ( .)
+    ]               reduce using rule 15 (simbol -> ( .)
+
+
+state 47
+
+    (16) simbol -> ) .
+
+    §               reduce using rule 16 (simbol -> ) .)
+    +               reduce using rule 16 (simbol -> ) .)
+    -               reduce using rule 16 (simbol -> ) .)
+    =               reduce using rule 16 (simbol -> ) .)
+    /               reduce using rule 16 (simbol -> ) .)
+    *               reduce using rule 16 (simbol -> ) .)
+    (               reduce using rule 16 (simbol -> ) .)
+    )               reduce using rule 16 (simbol -> ) .)
+    [               reduce using rule 16 (simbol -> ) .)
+    ]               reduce using rule 16 (simbol -> ) .)
+
+
+state 48
+
+    (17) simbol -> [ .
+
+    §               reduce using rule 17 (simbol -> [ .)
+    +               reduce using rule 17 (simbol -> [ .)
+    -               reduce using rule 17 (simbol -> [ .)
+    =               reduce using rule 17 (simbol -> [ .)
+    /               reduce using rule 17 (simbol -> [ .)
+    *               reduce using rule 17 (simbol -> [ .)
+    (               reduce using rule 17 (simbol -> [ .)
+    )               reduce using rule 17 (simbol -> [ .)
+    [               reduce using rule 17 (simbol -> [ .)
+    ]               reduce using rule 17 (simbol -> [ .)
+
+
+state 49
+
+    (18) simbol -> ] .
+
+    §               reduce using rule 18 (simbol -> ] .)
+    +               reduce using rule 18 (simbol -> ] .)
+    -               reduce using rule 18 (simbol -> ] .)
+    =               reduce using rule 18 (simbol -> ] .)
+    /               reduce using rule 18 (simbol -> ] .)
+    *               reduce using rule 18 (simbol -> ] .)
+    (               reduce using rule 18 (simbol -> ] .)
+    )               reduce using rule 18 (simbol -> ] .)
+    [               reduce using rule 18 (simbol -> ] .)
+    ]               reduce using rule 18 (simbol -> ] .)
+
+
+state 50
+
+    (6) lexStat -> TOK = [ tokens . ]
+    (20) tokens -> tokens . , token
+
+    ]               shift and go to state 57
+    ,               shift and go to state 58
+
+
+state 51
+
+    (19) tokens -> token .
+
+    ]               reduce using rule 19 (tokens -> token .)
+    ,               reduce using rule 19 (tokens -> token .)
+
+
+state 52
+
+    (21) token -> ASPAS . ID ASPAS
+
+    ID              shift and go to state 59
+
+
+state 53
+
+    (33) yaccStat -> ID GRAMM FUNC .
+
+    ANY             reduce using rule 33 (yaccStat -> ID GRAMM FUNC .)
+    ID              reduce using rule 33 (yaccStat -> ID GRAMM FUNC .)
+    ERROR           reduce using rule 33 (yaccStat -> ID GRAMM FUNC .)
+
+
+state 54
+
+    (24) lexDef -> REGEX RET ( ASPAS2 . ID ASPAS2 , valueRet )
+
+    ID              shift and go to state 60
+
+
+state 55
+
+    (5) lexStat -> LIT = § simbols § .
+
+    LIT             reduce using rule 5 (lexStat -> LIT = § simbols § .)
+    TOK             reduce using rule 5 (lexStat -> LIT = § simbols § .)
+    IGNORE          reduce using rule 5 (lexStat -> LIT = § simbols § .)
+    REGEX           reduce using rule 5 (lexStat -> LIT = § simbols § .)
+    ERROR           reduce using rule 5 (lexStat -> LIT = § simbols § .)
+
+
+state 56
+
+    (8) simbols -> simbols simbol .
+
+    §               reduce using rule 8 (simbols -> simbols simbol .)
+    +               reduce using rule 8 (simbols -> simbols simbol .)
+    -               reduce using rule 8 (simbols -> simbols simbol .)
+    =               reduce using rule 8 (simbols -> simbols simbol .)
+    /               reduce using rule 8 (simbols -> simbols simbol .)
+    *               reduce using rule 8 (simbols -> simbols simbol .)
+    (               reduce using rule 8 (simbols -> simbols simbol .)
+    )               reduce using rule 8 (simbols -> simbols simbol .)
+    [               reduce using rule 8 (simbols -> simbols simbol .)
+    ]               reduce using rule 8 (simbols -> simbols simbol .)
+
+
+state 57
+
+    (6) lexStat -> TOK = [ tokens ] .
+
+    LIT             reduce using rule 6 (lexStat -> TOK = [ tokens ] .)
+    TOK             reduce using rule 6 (lexStat -> TOK = [ tokens ] .)
+    IGNORE          reduce using rule 6 (lexStat -> TOK = [ tokens ] .)
+    REGEX           reduce using rule 6 (lexStat -> TOK = [ tokens ] .)
+    ERROR           reduce using rule 6 (lexStat -> TOK = [ tokens ] .)
+
+
+state 58
+
+    (20) tokens -> tokens , . token
+    (21) token -> . ASPAS ID ASPAS
+
+    ASPAS           shift and go to state 52
+
+    token                          shift and go to state 61
+
+state 59
+
+    (21) token -> ASPAS ID . ASPAS
+
+    ASPAS           shift and go to state 62
+
+
+state 60
+
+    (24) lexDef -> REGEX RET ( ASPAS2 ID . ASPAS2 , valueRet )
+
+    ASPAS2          shift and go to state 63
+
+
+state 61
+
+    (20) tokens -> tokens , token .
+
+    ]               reduce using rule 20 (tokens -> tokens , token .)
+    ,               reduce using rule 20 (tokens -> tokens , token .)
+
+
+state 62
+
+    (21) token -> ASPAS ID ASPAS .
+
+    ]               reduce using rule 21 (token -> ASPAS ID ASPAS .)
+    ,               reduce using rule 21 (token -> ASPAS ID ASPAS .)
+
+
+state 63
+
+    (24) lexDef -> REGEX RET ( ASPAS2 ID ASPAS2 . , valueRet )
+
+    ,               shift and go to state 64
+
+
+state 64
+
+    (24) lexDef -> REGEX RET ( ASPAS2 ID ASPAS2 , . valueRet )
+    (26) valueRet -> . RETVALUE
+    (27) valueRet -> . TYPE ( RETVALUE )
+
+    RETVALUE        shift and go to state 66
+    TYPE            shift and go to state 67
+
+    valueRet                       shift and go to state 65
+
+state 65
+
+    (24) lexDef -> REGEX RET ( ASPAS2 ID ASPAS2 , valueRet . )
+
+    )               shift and go to state 68
+
+
+state 66
+
+    (26) valueRet -> RETVALUE .
+
+    )               reduce using rule 26 (valueRet -> RETVALUE .)
+
+
+state 67
+
+    (27) valueRet -> TYPE . ( RETVALUE )
+
+    (               shift and go to state 69
+
+
+state 68
+
+    (24) lexDef -> REGEX RET ( ASPAS2 ID ASPAS2 , valueRet ) .
+
+    REGEX           reduce using rule 24 (lexDef -> REGEX RET ( ASPAS2 ID ASPAS2 , valueRet ) .)
+    ERROR           reduce using rule 24 (lexDef -> REGEX RET ( ASPAS2 ID ASPAS2 , valueRet ) .)
+    %               reduce using rule 24 (lexDef -> REGEX RET ( ASPAS2 ID ASPAS2 , valueRet ) .)
+
+
+state 69
+
+    (27) valueRet -> TYPE ( . RETVALUE )
+
+    RETVALUE        shift and go to state 70
+
+
+state 70
+
+    (27) valueRet -> TYPE ( RETVALUE . )
+
+    )               shift and go to state 71
+
+
+state 71
+
+    (27) valueRet -> TYPE ( RETVALUE ) .
+
+    )               reduce using rule 27 (valueRet -> TYPE ( RETVALUE ) .)
+
